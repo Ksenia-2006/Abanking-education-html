@@ -1,4 +1,4 @@
-/* style.scss */
+// style.scss
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ body {
     position: relative;
 }
 
-/* Навигационная панель */
+// Навигационная панель
 .navbar {
     background: #1E252B;
     padding: 0;
@@ -44,23 +44,6 @@ body {
         width: 140px;
         height: 38px;
     }
-
-    &__menu {
-        display: flex;
-        gap: 40px;
-        width: 431px;
-        height: 24px;
-        justify-content: center;
-    }
-
-    &__actions {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        width: 180px;
-        height: 48px;
-        justify-content: flex-end;
-    }
 }
 
 .logo {
@@ -81,6 +64,14 @@ body {
     color: #FFFFFF;
 }
 
+.navbar__menu {
+    display: flex;
+    gap: 40px;
+    width: 431px;
+    height: 24px;
+    justify-content: center;
+}
+
 .menu-item {
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
@@ -96,6 +87,15 @@ body {
         background: url("data:image/svg+xml,%3Csvg width='9' height='5' viewBox='0 0 9 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L4.5 4L8 1' stroke='rgba(255,255,255,0.6)' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center;
         margin-left: 8px;
     }
+}
+
+.navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 180px;
+    height: 48px;
+    justify-content: flex-end;
 }
 
 .login-btn {
@@ -126,7 +126,7 @@ body {
     font-size: 1rem;
 }
 
-/* Верхний блок */
+// Верхний блок
 .header {
     background: #1E252B;
     position: absolute;
@@ -184,6 +184,15 @@ body {
         display: flex;
         gap: 16px;
     }
+
+    &__illustration {
+        position: absolute;
+        top: 132px;
+        left: 848px;
+        width: 589px;
+        height: 892px;
+        z-index: 2;
+    }
 }
 
 .search-box {
@@ -238,16 +247,46 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.1);
+    background: #1E252B;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 500;
     width: 58px;
     height: 58px;
+    transition: all 0.3s ease;
+
+    svg {
+        width: 24px;
+        height: 24px;
+        fill: rgba(255, 255, 255, 0.78);
+        transition: all 0.3s ease;
+    }
+
+    &:hover {
+        background: rgba(255, 110, 48, 0.2);
+
+        svg {
+            fill: #FF6E30;
+        }
+    }
 }
 
-/* Блок популярных инструментов */
+.twitter-icon {
+    width: 24px;
+    height: 24px;
+    fill: rgba(255, 255, 255, 0.78);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover .twitter-icon {
+    fill: #FF6E30;
+}
+
+.illustration-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+// Блок популярных инструментов
 .popular-tools {
     position: absolute;
     top: 700px;
@@ -291,7 +330,6 @@ body {
     }
 }
 
-/* Сетка инструментов */
 .tools-grid {
     display: grid;
     grid-template-columns: repeat(3, 392px);
@@ -302,26 +340,26 @@ body {
     margin-bottom: 0;
 }
 
-/* Карточка инструмента */
+// Карточки инструментов
 .tool-card {
-    background: linear-gradient(145deg, #1A1F25 0%, #283036 100%);
+    background: #1E252B;
     border-radius: 24px;
     padding: 32px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     width: 392px;
     height: 294px;
     position: relative;
-
-    /* Особый стиль для Sketch (вторая карточка) */
+    // Карточка 2 - Sketch
     &:nth-child(2) {
         top: -20px;
+        background: #28303699;
         border: 2px solid;
         border-image: linear-gradient(118.49deg, rgba(255, 255, 255, 0.08) -2.11%, rgba(255, 255, 255, 0) 28.55%, rgba(255, 255, 255, 0.05) 44.69%, rgba(255, 255, 255, 0) 96.78%);
     }
 
     &__header {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 20px;
         margin-bottom: 24px;
     }
@@ -330,42 +368,134 @@ body {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 15px;
+        position: absolute;
+        bottom: 32px;
+        left: 32px;
+        right: 32px;
     }
-}
 
-.tool-icon {
-    width: 64px;
-    height: 64px;
-    background: #FF6E30;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: white;
+    &:nth-child(1),
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6) {
+        .tool-name {
+            color: rgba(255, 255, 255, 0.78);
+        }
+    }
+
+    &:nth-child(2) {
+        .tool-name {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .tag-icon {
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .heart-icon {
+            background: transparent;
+
+            img {
+                filter: brightness(0) saturate(100%) invert(39%) sepia(56%) saturate(2613%) hue-rotate(330deg) brightness(97%) contrast(101%);
+            }
+        }
+
+        .folder-icon img {
+            filter: brightness(1.1);
+        }
+
+        .visit-btn {
+            background: #FF6E30;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            height: 42px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 100%;
+        }
+    }
+
+    &:not(:nth-child(2)) {
+        .visit-btn {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.55);
+            border: none;
+            padding: 0;
+            width: auto;
+            height: auto;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 100%;
+        }
+    }
+
+    &:nth-child(6) {
+        .tool-icon {
+            width: 65px;
+            height: 64px;
+            background: #FF0066;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0;
+            opacity: 0.78;
+        }
+    }
+
+    &:nth-child(4) {
+        .tool-icon {
+            width: 64px;
+            height: 64px;
+            background: transparent;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+    }
 }
 
 .tool-info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
 
 .tool-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: rgba(255, 255, 255, 0.95);
+    font-size: 24px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: 'Poppins', sans-serif;
+    line-height: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
 }
 
 .tool-price {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 500;
-    padding: 4px 12px;
-    background: rgba(255, 110, 48, 0.1);
-    border-radius: 20px;
-    display: inline-block;
+    font-size: 18px;
+    color: rgba(255, 165, 55, 0.55);
+    font-weight: 400;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+    line-height: 100%;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .tool-description {
@@ -379,40 +509,104 @@ body {
     height: 60px;
 }
 
-.tool-tags {
+.tool-icons-container {
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 12px;
+    width: 96px;
+    height: 42px;
+}
+
+.tag-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border-radius: 8px;
+    border: none;
+    transition: all 0.3s ease;
+
+    img {
+        width: 25px;
+        height: 21px;
+        filter: brightness(0.8);
+    }
+
+    &:hover {
+        background: transparent;
+        border: none;
+    }
+}
+
+.invision-text {
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 100%;
+    opacity: 1;
+}
+
+.notion-cube {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    transform-style: preserve-3d;
+    transform: rotateX(-25deg) rotateY(25deg);
+}
+
+.notion-cube-front {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateZ(6px);
+}
+
+.notion-cube-top {
+    position: absolute;
+    width: 52px;
+    height: 10px;
+    background: #FFFFFF;
+    transform: rotateX(90deg) translateZ(31px);
+}
+
+.notion-cube-left {
+    position: absolute;
+    width: 10px;
+    height: 52px;
+    background: #000000;
+    transform: rotateY(-90deg) translateZ(31px);
+}
+
+.notion-text {
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 100%;
 }
 
 .tag {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 8px 16px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
 }
 
-.visit-btn {
-    background: #FF6E30;
-    border: none;
-    border-radius: 12px;
-    color: white;
-    padding: 12px 24px;
-    cursor: pointer;
-    font-weight: 600;
+.tool-tags {
+    display: none;
 }
 
-/* Кнопка Load More */
+// Кнопка Load More
 .load-more {
     position: absolute;
-    top: 1962px;
-    left: 666px;
+    top: 1145px;
+    left: 628px;
     width: 184px;
     height: 64px;
     text-align: center;
-    margin-top: 0;
     z-index: 10000;
 }
 
@@ -432,15 +626,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-
-    /* Убираем псевдоэлемент и используем обычный текст */
-    &::before {
-        display: none;
-    }
 }
 
-/* Блок с доверенными брендами */
+// Блок trusted-brands
 .trusted-brands {
     position: absolute;
     top: 1945px;
@@ -459,7 +647,6 @@ body {
         overflow: hidden;
         z-index: 1;
 
-        /* Фоновая плашка */
         &::before {
             content: '';
             position: absolute;
@@ -472,7 +659,6 @@ body {
             border-image: linear-gradient(92.39deg, rgba(255, 255, 255, 0.05) -4.6%, rgba(255, 255, 255, 0) 96.79%);
         }
 
-        /* Красный эллипс - внутри контейнера */
         &::after {
             content: '';
             position: absolute;
@@ -516,37 +702,84 @@ body {
 }
 
 .brand-logo {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.75rem;
-    font-weight: 700;
-    padding: 20px 40px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 700;
 
-    /* Microsoft */
     &:nth-child(1) {
-        width: 193px;
-        height: 42px;
+        width: 139px;
+        height: 27px;
+        font-size: 24px;
     }
 
-    /* Google */
     &:nth-child(2) {
-        width: 160px;
-        height: 40px;
+        width: 157px;
+        height: 51px;
+        font-size: 32px;
     }
 
-    /* Slack */
     &:nth-child(3) {
-        width: 194px;
-        height: 49px;
+        width: 132px;
+        height: 41px;
+        font-size: 28px;
     }
+}
 
-    /* WordPress */
-    &:nth-child(4) {
-        width: 194px;
-        height: 44px;
-    }
+.microsoft-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 193px;
+    height: 42px;
+}
+
+.microsoft-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2px;
+    width: 42px;
+    height: 42px;
+}
+
+.microsoft-square {
+    width: 19.57px;
+    height: 19.83px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0px;
+}
+
+.brand-text {
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.wordpress-logo {
+    display: flex;
+    align-items: center;
+    width: 194px;
+    height: 44px;
+    position: relative;
+}
+
+.wordpress-part-1 {
+    width: 75px;
+    height: 19px;
+    font-size: 22px;
+    position: absolute;
+    left: 46px;
+    top: 13px;
+}
+
+.wordpress-part-2 {
+    width: 72px;
+    height: 19px;
+    font-size: 22px;
+    position: absolute;
+    left: 122px;
+    top: 13px;
 }
